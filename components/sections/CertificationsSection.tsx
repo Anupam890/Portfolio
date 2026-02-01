@@ -1,7 +1,3 @@
-import React from "react";
-
-const CertificationsSection = () => {
-  return <div>CertificationsSection</div>;
-};
-
-export default CertificationsSection;
+export async function CertificationsSection() {
+  return null;
+}

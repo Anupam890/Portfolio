@@ -1,7 +1,3 @@
-import React from "react";
-
-const ContactSection = () => {
-  return <div>ContactSection</div>;
-};
-
-export default ContactSection;
+export async function ContactSection() {
+  return null;
+}

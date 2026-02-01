@@ -1,7 +1,3 @@
-import React from "react";
-
-const SkillsSection = () => {
-  return <div>SkillsSection</div>;
-};
-
-export default SkillsSection;
+export async function SkillsSection() {
+  return null;
+}
