@@ -23,7 +23,7 @@ const HERO_QUERY = defineQuery(`*[_id == "singleton-profile"][0]{
   profileImage
 }`);
 
-export async function HeroSection() {
+const HeroSection = async () => {
   const { data: profile } = await sanityFetch({ query: HERO_QUERY });
 
   if (!profile) {
@@ -148,4 +148,6 @@ export async function HeroSection() {
       </div>
     </section>
   );
-}
+};
+
+export default HeroSection;
