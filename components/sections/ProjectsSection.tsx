@@ -35,7 +35,7 @@ export async function ProjectsSection() {
 
         <div className="@container">
           <div className="grid grid-cols-1 @2xl:grid-cols-2 @5xl:grid-cols-3 gap-8">
-            {projects.map((project) => (
+            {projects.map((project: any) => (
               <div
                 key={project.slug?.current}
                 className="@container/card group bg-card border rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300"
@@ -78,20 +78,22 @@ export async function ProjectsSection() {
                   {/* Tech Stack */}
                   {project.technologies && project.technologies.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 @md/card:gap-2">
-                      {project.technologies.slice(0, 4).map((tech, idx) => {
-                        const techData =
-                          tech && typeof tech === "object" && "name" in tech
-                            ? tech
-                            : null;
-                        return techData?.name ? (
-                          <span
-                            key={`${project.slug?.current}-tech-${idx}`}
-                            className="text-xs px-2 py-0.5 @md/card:py-1 rounded-md bg-muted"
-                          >
-                            {techData.name}
-                          </span>
-                        ) : null;
-                      })}
+                      {project.technologies
+                        .slice(0, 4)
+                        .map((tech: any, idx: number) => {
+                          const techData =
+                            tech && typeof tech === "object" && "name" in tech
+                              ? tech
+                              : null;
+                          return techData?.name ? (
+                            <span
+                              key={`${project.slug?.current}-tech-${idx}`}
+                              className="text-xs px-2 py-0.5 @md/card:py-1 rounded-md bg-muted"
+                            >
+                              {techData.name}
+                            </span>
+                          ) : null;
+                        })}
                       {project.technologies.length > 4 && (
                         <span className="text-xs px-2 py-0.5 @md/card:py-1 rounded-md bg-muted">
                           +{project.technologies.length - 4}

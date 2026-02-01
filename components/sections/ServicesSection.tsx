@@ -64,8 +64,8 @@ export async function ServicesSection() {
   };
 
   // Separate featured and regular services
-  const featured = services.filter((s) => s.featured);
-  const regular = services.filter((s) => !s.featured);
+  const featured = services.filter((s: any) => s.featured);
+  const regular = services.filter((s: any) => !s.featured);
 
   return (
     <section id="services" className="py-20 px-6">
@@ -84,7 +84,7 @@ export async function ServicesSection() {
             </h3>
             <div className="@container">
               <div className="grid grid-cols-1 @3xl:grid-cols-2 gap-8">
-                {featured.map((service) => (
+                {featured.map((service: any) => (
                   <div
                     key={service.slug?.current || service.title}
                     className="@container/card bg-card border-2 border-primary/20 rounded-lg p-6 @lg/card:p-8 hover:shadow-xl transition-all hover:scale-[1.02]"
@@ -122,7 +122,7 @@ export async function ServicesSection() {
                           Key Features:
                         </h4>
                         <ul className="space-y-2">
-                          {service.features.map((feature, idx) => (
+                          {service.features.map((feature: any, idx: number) => (
                             <li
                               key={`${service.title}-feature-${idx}`}
                               className="flex items-start gap-2"
@@ -161,20 +161,24 @@ export async function ServicesSection() {
                     {service.technologies &&
                       service.technologies.length > 0 && (
                         <div className="flex flex-wrap gap-2">
-                          {service.technologies.map((tech, idx) => {
-                            const techData =
-                              tech && typeof tech === "object" && "name" in tech
-                                ? tech
-                                : null;
-                            return techData?.name ? (
-                              <span
-                                key={`${service.title}-tech-${idx}`}
-                                className="px-2 py-1 @md/card:px-3 text-xs rounded-full bg-primary/10 text-primary"
-                              >
-                                {techData.name}
-                              </span>
-                            ) : null;
-                          })}
+                          {service.technologies.map(
+                            (tech: any, idx: number) => {
+                              const techData =
+                                tech &&
+                                typeof tech === "object" &&
+                                "name" in tech
+                                  ? tech
+                                  : null;
+                              return techData?.name ? (
+                                <span
+                                  key={`${service.title}-tech-${idx}`}
+                                  className="px-2 py-1 @md/card:px-3 text-xs rounded-full bg-primary/10 text-primary"
+                                >
+                                  {techData.name}
+                                </span>
+                              ) : null;
+                            },
+                          )}
                         </div>
                       )}
                   </div>
@@ -192,7 +196,7 @@ export async function ServicesSection() {
             )}
             <div className="@container">
               <div className="grid grid-cols-1 @2xl:grid-cols-2 @5xl:grid-cols-3 gap-6">
-                {regular.map((service) => (
+                {regular.map((service: any) => (
                   <div
                     key={service.slug?.current || service.title}
                     className="@container/card bg-card border rounded-lg p-6 hover:shadow-lg transition-all hover:scale-105 flex flex-col"
@@ -220,17 +224,19 @@ export async function ServicesSection() {
 
                     {service.features && service.features.length > 0 && (
                       <ul className="space-y-1 mb-4">
-                        {service.features.slice(0, 3).map((feature, idx) => (
-                          <li
-                            key={`${service.title}-feature-${idx}`}
-                            className="flex items-start gap-2 text-xs @md/card:text-sm"
-                          >
-                            <Check className="w-3.5 h-3.5 @md/card:w-4 @md/card:h-4 text-primary mt-0.5 flex-shrink-0" />
-                            <span className="text-muted-foreground line-clamp-2">
-                              {feature}
-                            </span>
-                          </li>
-                        ))}
+                        {service.features
+                          .slice(0, 3)
+                          .map((feature: any, idx: number) => (
+                            <li
+                              key={`${service.title}-feature-${idx}`}
+                              className="flex items-start gap-2 text-xs @md/card:text-sm"
+                            >
+                              <Check className="w-3.5 h-3.5 @md/card:w-4 @md/card:h-4 text-primary mt-0.5 flex-shrink-0" />
+                              <span className="text-muted-foreground line-clamp-2">
+                                {feature}
+                              </span>
+                            </li>
+                          ))}
                       </ul>
                     )}
 

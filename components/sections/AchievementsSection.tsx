@@ -65,8 +65,8 @@ export async function AchievementsSection() {
   };
 
   // Separate featured and regular achievements
-  const featured = achievements.filter((a) => a.featured);
-  const regular = achievements.filter((a) => !a.featured);
+  const featured = achievements.filter((a: any) => a.featured);
+  const regular = achievements.filter((a: any) => !a.featured);
 
   return (
     <section id="achievements" className="py-20 px-6 bg-muted/30">
@@ -89,7 +89,7 @@ export async function AchievementsSection() {
             </h3>
             <div className="@container">
               <div className="grid grid-cols-1 @3xl:grid-cols-2 gap-6">
-                {featured.map((achievement) => (
+                {featured.map((achievement: any) => (
                   <div
                     key={`${achievement.title}-${achievement.date}`}
                     className="@container/card bg-card border-2 border-primary/20 rounded-lg p-6 hover:shadow-lg transition-all hover:scale-[1.02]"
@@ -165,7 +165,7 @@ export async function AchievementsSection() {
             )}
             <div className="@container">
               <div className="grid grid-cols-1 @2xl:grid-cols-2 @5xl:grid-cols-3 gap-6">
-                {regular.map((achievement) => (
+                {regular.map((achievement: any) => (
                   <div
                     key={`${achievement.title}-${achievement.date}`}
                     className="@container/card bg-card border rounded-lg p-6 hover:shadow-lg transition-all hover:scale-105 flex flex-col"

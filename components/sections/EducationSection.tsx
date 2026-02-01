@@ -65,7 +65,7 @@ export async function EducationSection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {education.map((edu) => (
+          {education.map((edu: any) => (
             <div
               key={`${edu.institution}-${edu.degree}-${edu.startDate}`}
               className="group relative bg-card border rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300"
@@ -138,7 +138,7 @@ export async function EducationSection() {
                       Achievements & Honors
                     </h4>
                     <ul className="space-y-1.5">
-                      {edu.achievements.map((achievement, idx) => (
+                      {edu.achievements.map((achievement: any, idx: number) => (
                         <li
                           key={`${edu.institution}-achievement-${idx}`}
                           className="text-xs text-muted-foreground flex items-start gap-2"
