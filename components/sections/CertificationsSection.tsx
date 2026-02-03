@@ -5,6 +5,7 @@ import { defineQuery } from "next-sanity";
 import { CometCard } from "@/components/ui/comet-card";
 import { urlFor } from "@/sanity/lib/image";
 import { sanityFetch } from "@/sanity/lib/live";
+import type { Certification } from "@/sanity.types";
 
 const CERTIFICATIONS_QUERY =
   defineQuery(`*[_type == "certification"] | order(issueDate desc){
@@ -59,7 +60,7 @@ export async function CertificationsSection() {
 
         <div className="@container">
           <div className="grid grid-cols-1 @2xl:grid-cols-2 gap-10">
-            {certifications.map((cert) => (
+            {certifications.map((cert: Certification) => (
               <CometCard
                 key={`${cert.issuer}-${cert.name}-${cert.issueDate}`}
                 rotateDepth={8}
@@ -165,22 +166,24 @@ export async function CertificationsSection() {
                         {cert.skills && cert.skills.length > 0 && (
                           <div className="mb-4">
                             <div className="flex flex-wrap justify-center gap-1.5">
-                              {cert.skills.slice(0, 4).map((skill, idx) => {
-                                const skillData =
-                                  skill &&
-                                  typeof skill === "object" &&
-                                  "name" in skill
-                                    ? skill
-                                    : null;
-                                return skillData?.name ? (
-                                  <span
-                                    key={`${cert.name}-skill-${idx}`}
-                                    className="px-2.5 py-1 text-[10px] bg-yellow-600/20 text-yellow-500 font-medium border border-yellow-600/30"
-                                  >
-                                    {skillData.name}
-                                  </span>
-                                ) : null;
-                              })}
+                              {cert.skills
+                                .slice(0, 4)
+                                .map((skill: any, idx: number) => {
+                                  const skillData =
+                                    skill &&
+                                    typeof skill === "object" &&
+                                    "name" in skill
+                                      ? skill
+                                      : null;
+                                  return skillData?.name ? (
+                                    <span
+                                      key={`${cert.name}-skill-${idx}`}
+                                      className="px-2.5 py-1 text-[10px] bg-yellow-600/20 text-yellow-500 font-medium border border-yellow-600/30"
+                                    >
+                                      {skillData.name}
+                                    </span>
+                                  ) : null;
+                                })}
                             </div>
                           </div>
                         )}
