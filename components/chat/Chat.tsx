@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Send, Bot, User, Sparkles, Loader2, X } from "lucide-react";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 interface Message {
   id: string;
@@ -239,33 +238,35 @@ export default function Chat({ profile }: ChatProps) {
                   : "bg-white/90 dark:bg-zinc-900/90 text-zinc-900 dark:text-white border border-zinc-200/50 dark:border-zinc-700/50 shadow-xl shadow-black/5 dark:shadow-black/20 backdrop-blur-xl"
               } rounded-2xl px-5 py-4 transition-all duration-300 hover:scale-[1.01]`}
             >
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                className="text-[15px] leading-relaxed prose prose-sm max-w-none dark:prose-invert"
-                components={{
-                  p: ({ children }) => (
-                    <p className="mb-2 last:mb-0">{children}</p>
-                  ),
-                  strong: ({ children }) => (
-                    <strong className="font-bold">{children}</strong>
-                  ),
-                  em: ({ children }) => <em className="italic">{children}</em>,
-                  ul: ({ children }) => (
-                    <ul className="list-disc ml-4 mb-2">{children}</ul>
-                  ),
-                  ol: ({ children }) => (
-                    <ol className="list-decimal ml-4 mb-2">{children}</ol>
-                  ),
-                  li: ({ children }) => <li className="mb-1">{children}</li>,
-                  code: ({ children }) => (
-                    <code className="bg-zinc-200 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm font-mono">
-                      {children}
-                    </code>
-                  ),
-                }}
-              >
-                {message.content}
-              </ReactMarkdown>
+              <div className="text-[15px] leading-relaxed prose prose-sm max-w-none dark:prose-invert">
+                <ReactMarkdown
+                  components={{
+                    p: ({ children }) => (
+                      <p className="mb-2 last:mb-0">{children}</p>
+                    ),
+                    strong: ({ children }) => (
+                      <strong className="font-bold">{children}</strong>
+                    ),
+                    em: ({ children }) => (
+                      <em className="italic">{children}</em>
+                    ),
+                    ul: ({ children }) => (
+                      <ul className="list-disc ml-4 mb-2">{children}</ul>
+                    ),
+                    ol: ({ children }) => (
+                      <ol className="list-decimal ml-4 mb-2">{children}</ol>
+                    ),
+                    li: ({ children }) => <li className="mb-1">{children}</li>,
+                    code: ({ children }) => (
+                      <code className="bg-zinc-200 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm font-mono">
+                        {children}
+                      </code>
+                    ),
+                  }}
+                >
+                  {message.content}
+                </ReactMarkdown>
+              </div>
               <span
                 className={`text-xs mt-2.5 block font-medium ${
                   message.role === "user"
